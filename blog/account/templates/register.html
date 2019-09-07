@@ -1,0 +1,30 @@
+{% extends 'account/base.html' %}
+{% block body %}
+{% load static %} 
+<div class="container">
+<div class="content-section">
+	<form method="post">{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Join Today</legend>
+			<table>
+			<tr><td><lebel>First name </lebel>: <input type="text" name="fname" placeholder="First name" required></td></tr>
+			<tr><td><lebel>Last name </lebel>: <input type="text" name="lname" placeholder="Last name" required></td></tr>
+			<tr><td><lebel>User name </lebel>: <input type="text" name="username" placeholder="User name" required></td></tr>
+			<tr><td><lebel>Email </lebel>: <input type="email" name="email" placeholder="account@name.com" required></td></tr>
+			<tr><td><lebel>Password </lebel>: <input type="password" name="password1" placeholder="password" required></td></tr>
+			<tr><td><lebel>Conform password </lebel>: <input type="password" name="password2" placeholder="Conform password" required></td></tr>
+            </table>
+		</fieldset>
+		<div>
+			<button class="btn btn-primary" type="submit">Sign up</button>
+		</div>
+		<div>
+			{% for message in messages %}
+			<h3>{{message}}</h3>
+			{% endfor %}
+</form>
+</div>
+<div>
+	<small>Already have account ? <a href="/account/login">Log in</a></small>
+</div>
+{% endblock %}

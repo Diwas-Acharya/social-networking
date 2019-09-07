@@ -1,0 +1,25 @@
+{% extends 'account/base.html' %}
+{% block body %}
+<div class="container">
+<div class="content-section">
+	<form method="post">{% csrf_token %} 
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Log in</legend>
+			<table>
+			<tr><td><lebel>User name </lebel> </td><td><input type="text" name="username" placeholder="User name" class="mx-5" required></td></tr>
+			<tr><td><lebel>Password </lebel> </td><td><input type="password" name="password" placeholder="password" class="mx-5 my-3" required></td></tr>
+            </table>
+		</fieldset>
+		<div>
+			<button class="btn btn-primary" type="submit">Login</button>
+		</div>
+</form>
+</div>
+<div>
+	<small>Don't have account ? <a href="/account/register">sign up</a></small>
+</div>
+<div>{% for message in messages %}
+      <h3>{{message}}</h3>
+      {% endfor %}
+    </div>
+{% endblock %}

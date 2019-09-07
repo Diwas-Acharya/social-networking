@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{username}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #popcart{
+    height: 50px;
+    border-radius: 50px;
+  }
+
+#menu li a {
+    color: white;
+}
+#menu li a:hover{
+  color: red;
+}
+#menu{
+  list-style: none;
+  color: white;
+}
+#menu li{
+    font-size: 17px;
+    margin-top: 9px;
+    float: left;
+    margin-right: 54px;
+}
+#menu li img{
+  height: 30px;
+  border-radius: 50px;
+}
+
+  </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hamroo gaff</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <ul id="menu">
+            <li><a href="/account/profile/{{id}}"><img src="{% static 'home.png' %}">Home</a></li>
+            <li><a href="/account/friends/{{id}}"><img src="{% static 'body.png' %}">Friends</a></li>
+            <li><a href="/account/usernotifications/{{id}}"><img src="{% static 'Notification.png' %}">Notifications</a></li>
+            <li><a href="/account/userchat/{{id}}"><img src="{% static 'chat.png' %}">Chat</a></li>
+        </ul>
+        <h3 style="color: white">Welcome! {{username}}</h3>
+        <img src="{% static 'profile.jpg' %}" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-toggle="popover" data-html="true" data-placement="bottom">
+    </nav>
+    <div>
+        <input type="hidden" name="id" id="id" value={{id}}>
+        <input type="hidden" name="name" id="name" value={{name}}>
+        <input type="hidden" name="lname" id="lname" value={{lname}}>
+        <input type="hidden" name="email" id="email" value={{email}}>
+        <input type="hidden" name="username" id="email" value={{username}}>
+    </div>
+    {% block body %}{% endblock %}
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/2e62468e6a.js"></script> -->
+<script>
+var name = document.getElementById("name").value;
+var lname = document.getElementById("lname").value;
+var email = document.getElementById("email").value;
+var id = document.getElementById("id").value;
+$('#popcart').popover();
+document.getElementById('popcart').setAttribute('data-content', `<div><a href="/account/userprofile/${id}"><img src="{% static 'profile.jpg' %}" alt="..." id="popcart"><b>&nbsp;&nbsp;&nbsp;${name}&nbsp;&nbsp;&nbsp;${lname}</b></a><br><h5>${email}<br></h5><a href="/" id="pro" class="btn btn-primary my-3">log out</a></div.`)
+</script>
+{% block js %}
+{% endblock %}
+
+</html>

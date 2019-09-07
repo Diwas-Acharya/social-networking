@@ -1,0 +1,57 @@
+{% extends 'account/base.html' %}
+{% block css %}
+<style>
+	#main{
+	margin-left: 200px;
+    max-width: 540px;
+    margin-top: 67px;
+}
+#request{
+	float: right;
+	position: relative;
+    margin-top: 57px;
+    margin-right: 151px;
+}
+}
+</style>
+{% endblock %}
+{% block body %}
+{% load static %}
+<div id="request">
+	<h2>Friend requests</h2><br><br>
+	<div class="card mb-3" style="max-width: 540px;border:none">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <a href="/account/userdetailes/{{user.id}}/{{id}}"><img src="{% static 'profile.jpg' %}" class="card-img" alt="..."></a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{users.0.first_name}} {{users.0.last_name}}</h5>
+        <button class="btn btn-primary">Conform</button>
+        <button class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container" id="main">  
+<h2>People you may know</h2><br><br>
+{% for user in users %}
+<div class="card mb-3" style="max-width: 540px;border:none">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+       <a href="/account/userdetailes/{{user.id}}/{{id}}" alt=""><img class="card-img" src="{% static 'profile.jpg' %}"alt="{% static 'profile.jpg' %}"></a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+        <button class="btn btn-primary">Add Friend</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+<h1>{{users}}</h1>
+<h1>{{pic}}</h1>
+{% endblock %}
