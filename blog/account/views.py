@@ -108,7 +108,7 @@ def userchat(request,userid):
 def userfriends(request,userid):
 	user = User.objects.filter(id=userid)
 	allposts = User.objects.all()[1:]
-	pic = User.objects.all()[1:]
+	pic = details.objects.all()[1:]
 	username =user[0].username
 	name = user[0].first_name
 	lname = user[0].last_name
@@ -121,12 +121,12 @@ def userfriends(request,userid):
 			pass
 		else:
 			users.append(name)
+
 	for nam in pic:
-		if nam.username==username:
+		if nam.name==username:
 			pass
 		else:
 			picture.append(nam)
-	print(picture)
 	return render(request,"friends.html",{'pic':picture,'username':username,'name':name,'lname':lname,'email':email,"id":userid,"users":users})
 
 

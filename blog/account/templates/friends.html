@@ -53,5 +53,7 @@
 {% endfor %}
 </div>
 <h1>{{users}}</h1>
-<h1>{{pic}}</h1>
+{% for i in pic %}
+<h1>{{i.image}}</h1>
+{% endfor %}
 {% endblock %}
