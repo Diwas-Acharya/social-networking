@@ -36,22 +36,19 @@
 </div>
 <div class="container" id="main">  
 <h2>People you may know</h2><br><br>
-{% for user in users %}
+{% for user in alluser %}
 <div class="card mb-3" style="max-width: 540px;border:none">
   <div class="row no-gutters">
     <div class="col-md-4">
-       <a href="/account/userdetailes/{{user.id}}/{{id}}" alt=""><img class="card-img" src="{% static 'profile.jpg' %}"alt="{% static 'profile.jpg' %}"></a>
+       <a href="/account/userdetailes/{{user.0.id}}/{{id}}" alt=""><img class="card-img" src="/media/{{user.1.image}}"alt="{% static 'profile.jpg' %}"></a>
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+        <h5 class="card-title">{{user.0.first_name}} {{user.0.last_name}}</h5>
         <button class="btn btn-primary">Add Friend</button>
       </div>
     </div>
   </div>
 </div>
 {% endfor %}
-</div>
-<h1>{{users}}</h1>
-<h1>{{pic}}</h1>
 {% endblock %}
