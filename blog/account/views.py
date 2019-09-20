@@ -132,15 +132,8 @@ def userfriends(request,userid):
 			if x.username == y.name:
 				lists = x,y
 				alluser.append(lists)
-	
 
 
-	for x in users:
-		print(x.username)
-	for x in picture:
-		print(x.name)
-
-	
 
 	ctx = {
 	 'pic':picture,
