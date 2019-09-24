@@ -25,5 +25,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', auth_views.LogoutView.as_view(template_name = 'signupandlogin.html') , name="logut"),
-    path("account/",include('account.urls'))
+    path("account/",include('account.urls')),
+    path("chat/",include('chat.urls'))
 ]   +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
