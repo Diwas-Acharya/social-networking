@@ -74,6 +74,7 @@
 var name = document.getElementById("name").value;
 var lname = document.getElementById("lname").value;
 var email = document.getElementById("email").value;
+
 var id = document.getElementById("id").value;
 $('#popcart').popover();
 document.getElementById('popcart').setAttribute('data-content', `<div><a href="/account/userprofile/${id}"><img src="{% static 'profile.jpg' %}" alt="..." id="popcart"><b>&nbsp;&nbsp;&nbsp;${name}&nbsp;&nbsp;&nbsp;${lname}</b></a><br><h5>${email}<br></h5><a href="/" id="pro" class="btn btn-primary my-3">log out</a></div.`)

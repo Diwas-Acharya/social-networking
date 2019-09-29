@@ -10,7 +10,6 @@ from account.models import details
 
 def register(request,id):
 	if id==1:
-		print("signup")
 		if request.method == 'POST':
 			fname = request.POST["fname"]
 			lname = request.POST["lname"]
@@ -35,7 +34,6 @@ def register(request,id):
 		return render(request,"signup.html")
 			
 	if id==2:
-		print("login")
 		if request.method=='POST':
 			username2 = request.POST["username1"]
 			password = request.POST["password"]
@@ -49,19 +47,41 @@ def register(request,id):
 			return render(request,'signup.html')
 		return render(request,'signup.html')
 	else:
-		print("random")
 		return render(request,"signup.html")
 
 @login_required(login_url='/account/register/5')
 def profile(request,myid):
 	user = User.objects.filter(id=myid)
-	allposts = User.objects.all()[1:]
 	uname =user[0].username
 	username =user[0].username
 	name = user[0].first_name
 	lname = user[0].last_name
 	email = user[0].email
-	return render(request,"profile.html",{'username':username,'uname':uname,'name':name,'lname':lname,'email':email,"id":myid,"allposts":allposts})
+
+	profie = details.objects.all()
+	new = []
+
+
+	for x in profie:
+		users = User.objects.filter(id=x.uid)
+		lists = x,[x for x in users]
+		new.append(lists)
+
+	print(new)
+
+
+	ctx = {
+    'username':username,
+    'uname':uname,
+    'name':name,
+    'lname':lname,
+    'email':email,
+    "id":myid,
+    "allposts":new
+    }
+
+
+	return render(request,"profile.html",ctx)
 
 @login_required(login_url='/account/register/5')
 def userprofile(request,userid):
@@ -113,37 +133,34 @@ def userfriends(request,userid):
 	name = user[0].first_name
 	lname = user[0].last_name
 	email = user[0].email
-	users = []
-	alluser=[]
-	picture = []
+	users = []	
 	for name in allposts:
 		if name.username==username:
 			pass
 		else:
 			users.append(name)
-	for nam in pic:
-		if nam.name==username:
-			pass
-		else:
-			picture.append(nam)
-
+	new = []
 	for x in users:
-		for y in picture:
-			if x.username == y.name:
-				lists = x,y
-				alluser.append(lists)
+		pic = details.objects.filter(uid=x.id)
+		l = [x for x in pic]
+		if len(pic)>0:
+			lists = x , l
+			new.append(lists)
+		else:
+			lists = x ,None
+			new.append(lists)
 
 
 
 	ctx = {
-	 'pic':picture,
 	 'username':username,
 	 'name':name,
 	 'lname':lname,
 	 'email':email,
 	 "id":userid,
 	 "users":users,
-	 "alluser":alluser
+	 "alluser":new
+
 	}
 
 	return render(request,"friends.html",ctx)
