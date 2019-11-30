@@ -36,16 +36,18 @@
 </div>
 <div class="container" id="main">  
 <h2>People you may know</h2><br><br>
+{{alluser.0.1.0.status}}
 {% for user in alluser %}
 <div class="card mb-3" style="max-width: 540px;border:none">
   <div class="row no-gutters">
     <div class="col-md-4">
-      {% if user.1.0.image %}
-       <a href="/account/userdetailes/{{user.0.id}}/{{id}}"><img class="card-img" src="/media/{{user.1.0.image}}"alt="{% static 'profile.jpg' %}"></a>
-      {% endif %}
-      {% if user.1.0.image is false %}
-      <a href="/account/userdetailes/{{user.0.id}}/{{id}}" alt=""><img class="card-img" src="/media/account/images/profile.png" ></a>
-      {% endif %}
+       <a href="/account/userdetailes/{{user.0.id}}/{{id}}">
+        <img 
+          class="card-img" 
+          src="/media/{{user.1.0.image}}"alt="{% static 'profile.jpg' %}"
+          onerror="this.onerror=null;this.src='/media/account/images/profile.png';"
+          >
+      </a>
     </div>
     <div class="col-md-8">
       <div class="card-body">
